@@ -1183,8 +1183,10 @@ int32_t msm_sensor_driver_probe(void *setting,
 
 
 	camera_info = kzalloc(sizeof(struct msm_camera_slave_info), GFP_KERNEL);
-	if (!camera_info)
+	if (!camera_info) {
+		pr_err("failed: no memory slave_info %pK", camera_info);
 		goto free_power_settings;
+	}
 
 	s_ctrl->sensordata->slave_info = camera_info;
 
